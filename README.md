@@ -23,7 +23,8 @@ This is a minimal example showing how to:
 The server provides:
 - 📋 Resource listing endpoint
 - 📖 Resource content endpoint
-- 🔍 URI: `hello://world`
+- 🔍 Basic URI: `hello://world`
+- 🎯 Template URI: `greetings://{name}` (try with your name!)
 
 ### 🏃‍♂️ Running the Server
 
@@ -39,8 +40,21 @@ npm run build
 
 3. Run the server:
 ```bash
-node dist/index.js
+npm start
 ```
+
+### 🧪 Testing the Server
+
+Run the test script to see it in action:
+```bash
+npm test
+```
+
+This will:
+- 🚀 Start the MCP server
+- 🤝 Connect a test client
+- 📝 Request a personalized greeting
+- ✨ Show the response
 
 ### 🤝 Contributing
 
