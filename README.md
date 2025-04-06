@@ -1,5 +1,7 @@
 # 🌟 Hello World MCP Server! 🌟
 
+> 🤖 This README is created through MCP GitHub server - showcasing the power of Model Context Protocol! 
+
 ## 👋 Welcome to your first MCP Server!
 
 This repository contains a simple implementation of a Model Context Protocol (MCP) server that serves friendly greeting messages! 🎉
@@ -106,5 +108,7 @@ If you like this project, please give it a star ⭐! It helps others discover th
 ---
 
 Made with 💖 by Kushang Gajjar
+
+> 🔧 Repository and documentation managed through MCP GitHub server
 
 🌈 Happy coding! 🚀
