@@ -1,51 +1,40 @@
-import { Client } from "@modelcontextprotocol/sdk/client/index.js";
-import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
-import { spawn } from "child_process";
+import { createServer } from "@modelcontextprotocol/sdk/server/index.js";
+import { setupHandlers } from "./handlers.js";
 
-async function main() {
-  try {
-    // Start the server as a separate process
-    const serverProcess = spawn("node", ["build/index.js"], {
-      stdio: ["pipe", "pipe", "pipe"],
-    });
+async function runTests() {
+  const server = createServer();
+  setupHandlers(server);
 
-    // Log server output for debugging
-    serverProcess.stdout.on("data", (data) => {
-      console.log("Server output:", data.toString());
-    });
-    serverProcess.stderr.on("data", (data) => {
-      console.error("Server error:", data.toString());
-    });
+  // Test greeting resource
+  const greetingResult = await server.handleRequest({
+    method: "read_resource",
+    params: { uri: "greeting" },
+  });
+  console.log("Greeting resource test:", greetingResult);
 
-    // Create MCP client
-    const client = new Client({
-      name: "test-client",
-      version: "1.0.0",
-    });
+  // Test greeting template
+  const templateResult = await server.handleRequest({
+    method: "read_resource",
+    params: { uri: "greeting/Alice" },
+  });
+  console.log("Greeting template test:", templateResult);
 
-    const transport = new StdioClientTransport({
-      command: "node",
-      args: ["build/index.js"],
-    });
+  // Test greeting prompt
+  const promptResult = await server.handleRequest({
+    method: "get_prompt",
+    params: { name: "greeting", arguments: { name: "Bob", style: "formal" } },
+  });
+  console.log("Greeting prompt test:", promptResult);
 
-    console.log("Connecting to server...");
-    await client.connect(transport);
-
-    // Test 1: Get greeting for Frank
-    console.log("\nGetting greeting for Frank...");
-    const frankGreeting = await client.readResource({
-      uri: "greetings://Frank",
-    });
-    console.log("Frank's greeting:", JSON.stringify(frankGreeting, null, 2));
-
-    // Cleanup
-    console.log("\nTests completed successfully!");
-    serverProcess.kill();
-    process.exit(0);
-  } catch (error) {
-    console.error("Test failed:", error);
-    process.exit(1);
-  }
+  // Test greeting tool
+  const toolResult = await server.handleRequest({
+    method: "call_tool",
+    params: {
+      name: "greet",
+      arguments: { name: "Charlie", style: "casual" },
+    },
+  });
+  console.log("Greeting tool test:", toolResult);
 }
 
-main();
+runTests().catch(console.error);

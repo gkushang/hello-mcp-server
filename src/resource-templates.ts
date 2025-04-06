@@ -1,27 +1,27 @@
+const templates = new Map<string, () => { content: string }>();
+
 export const resourceTemplates = [
   {
-    uriTemplate: "greetings://{name}",
-    name: "Personal Greeting",
+    uri: "greeting/{name}",
     description: "A personalized greeting message",
-    mimeType: "text/plain",
+    parameters: {
+      type: "object",
+      properties: {
+        name: { type: "string" },
+      },
+      required: ["name"],
+    },
   },
 ];
 
-export const getResourceTemplate = (uri: string) => {
-  const greetingExp = /^greetings:\/\/(.+)$/;
-  const greetingMatch = uri.match(greetingExp);
-  
-  if (greetingMatch) {
-    const name = decodeURIComponent(greetingMatch[1]);
+export const getResourceTemplate = (
+  uri: string
+): (() => { content: string }) | undefined => {
+  if (uri.startsWith("greeting/")) {
+    const name = uri.split("/")[1];
     return () => ({
-      contents: [
-        {
-          uri,
-          text: `Hello, ${name}! Welcome to MCP.`,
-        },
-      ],
+      content: `Hello, ${name}! Welcome to our MCP server! 👋`,
     });
   }
-  
-  return null;
+  return undefined;
 };

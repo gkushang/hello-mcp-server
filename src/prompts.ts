@@ -1,7 +1,7 @@
 export const prompts = {
   greeting: {
     name: "greeting",
-    description: "Generate a greeting message",
+    description: "A friendly greeting message",
     parameters: {
       type: "object",
       properties: {
@@ -14,11 +14,13 @@ export const prompts = {
 };
 
 export const promptHandlers = {
-  greeting: ({ name, style = "casual" }) => {
-    const greetings = {
-      formal: `Greetings, ${name}. Welcome to the Model Context Protocol.`,
-      casual: `Hey ${name}! Welcome to MCP! 👋`,
+  greeting: (args: { name: string; style?: string }) => {
+    const { name, style = "casual" } = args;
+    return {
+      content:
+        style === "formal"
+          ? `Dear ${name}, welcome to our service.`
+          : `Hey ${name}! Welcome aboard! 👋`,
     };
-    return { text: greetings[style as keyof typeof greetings] };
   },
 };

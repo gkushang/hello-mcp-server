@@ -1,19 +1,12 @@
 export const resources = [
   {
-    uri: "hello://world",
-    name: "Hello World Message",
+    uri: "greeting",
     description: "A simple greeting message",
-    mimeType: "text/plain",
   },
 ];
 
 export const resourceHandlers = {
-  "hello://world": () => ({
-    contents: [
-      {
-        uri: "hello://world",
-        text: "Hello, World! This is my first MCP resource.",
-      },
-    ],
+  greeting: () => ({
+    content: "Hello from the MCP server! 👋",
   }),
 };

@@ -1,20 +1,19 @@
 {
-  "name": "hello-mcp",
+  "name": "hello-mcp-server",
   "version": "1.0.0",
+  "description": "A simple MCP server implementation",
+  "main": "build/index.js",
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node build/index.js",
+    "test": "node build/test.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "A simple Hello World server implementing the Model Context Protocol (MCP)",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.1.0"
+    "@modelcontextprotocol/sdk": "^0.1.0"
   },
   "devDependencies": {
-    "@types/node": "^22.10.5",
-    "typescript": "^5.7.2"
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
   }
 }
