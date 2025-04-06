@@ -14,7 +14,7 @@ import {
   resourceTemplates,
 } from "./resource-templates.js";
 import { promptHandlers, prompts } from "./prompts.js";
-import { toolHandlers, tools } from "./tools.js";
+import { toolHandlers, tools, type CreateEmailArgs, type CreateMessageArgs } from "./tools.js";
 
 export const setupHandlers = (server: Server): void => {
   // List available resources when clients request them
@@ -40,6 +40,7 @@ export const setupHandlers = (server: Server): void => {
   server.setRequestHandler(ListPromptsRequestSchema, () => ({
     prompts: Object.values(prompts),
   }));
+
   server.setRequestHandler(GetPromptRequestSchema, (request) => {
     const { name, arguments: args } = request.params;
     const promptHandler = promptHandlers[name as keyof typeof promptHandlers];
@@ -54,13 +55,14 @@ export const setupHandlers = (server: Server): void => {
   }));
 
   server.setRequestHandler(CallToolRequestSchema, async (request) => {
+    console.log("CallToolRequestSchema", request);
     type ToolHandlerKey = keyof typeof toolHandlers;
     const { name, arguments: params } = request.params ?? {};
     const handler = toolHandlers[name as ToolHandlerKey];
 
     if (!handler) throw new Error("Tool not found");
+    if (!params) throw new Error("Tool arguments are required");
 
-    type HandlerParams = Parameters<typeof handler>;
-    return handler(...([params] as HandlerParams));
+    return (handler as (args: any) => any)(params);
   });
 };
