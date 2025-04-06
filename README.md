@@ -1,8 +1,8 @@
-# ⭐ Hello World MCP Server! ⭐
+# 🌟 Hello World MCP Server! 🌟
 
 ## 👋 Welcome to your first MCP Server!
 
-This repository contains a simple implementation of a Model Context Protocol (MCP) server that serves a friendly "Hello, World!" message.
+This repository contains a simple implementation of a Model Context Protocol (MCP) server that serves friendly greeting messages! 🎉
 
 ### 🎯 What is this?
 
@@ -10,13 +10,17 @@ This is a minimal example showing how to:
 - 🔧 Set up an MCP server
 - 📚 Implement resource handlers
 - 🌐 Serve content through the Model Context Protocol
+- 🎨 Create custom greeting templates
+- 🤖 Handle dynamic responses
 
 ### 🚀 Features
 
 - ✨ Simple and clean implementation
 - 📡 Implements MCP resource capabilities
-- 🎁 Serves a friendly greeting message
+- 🎁 Multiple greeting styles
+- 💫 Dynamic name-based greetings
 - 💻 Uses standard I/O for communication
+- 🔄 Real-time responses
 
 ### 🛠️ Technical Details
 
@@ -25,6 +29,7 @@ The server provides:
 - 📖 Resource content endpoint
 - 🔍 Basic URI: `hello://world`
 - 🎯 Template URI: `greetings://{name}` (try with your name!)
+- 🎭 Prompt styles: formal & casual
 
 ### 🏃‍♂️ Running the Server
 
@@ -56,17 +61,50 @@ This will:
 - 📝 Request a personalized greeting
 - ✨ Show the response
 
+### 👨‍💻 Contributors
+
+- **Kushang Gajjar** 🌟
+  - GitHub: [@gkushang](https://github.com/gkushang)
+  - Role: Creator & Maintainer
+  - 🏆 Lead Developer of Hello MCP Server
+
 ### 🤝 Contributing
 
 Feel free to contribute! Whether it's:
 - 🐛 Bug fixes
 - ✨ New features
 - 📚 Documentation improvements
+- 🎨 UI/UX enhancements
+- 🔧 Performance optimizations
+
+### 🌈 Try These Cool Features!
+
+1. 👋 Get a basic greeting:
+   ```
+   hello://world
+   ```
+
+2. 🎯 Get a personalized greeting:
+   ```
+   greetings://YourName
+   ```
+
+3. 🎭 Try different prompt styles:
+   - 👔 Formal: "Greetings, {name}..."
+   - 😊 Casual: "Hey {name}! ..."
 
 ### 📝 License
 
 ISC License
 
 ---
+
+### 🌟 Star History
+
+If you like this project, please give it a star ⭐! It helps others discover this awesome MCP implementation.
+
+---
+
+Made with 💖 by Kushang Gajjar
 
 🌈 Happy coding! 🚀
